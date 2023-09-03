@@ -1,0 +1,8 @@
+{
+  "tasks": {
+    "update": "deno run --allow-net --allow-read --allow-write ./main.ts && deno fmt ./docs/data.json"
+  },
+  "imports": {
+    "deno-dom-wasm": "https://deno.land/x/deno_dom@v0.1.38/deno-dom-wasm.ts"
+  }
+}
