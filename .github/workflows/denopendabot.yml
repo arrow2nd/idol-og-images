@@ -28,4 +28,10 @@ jobs:
           labels: dependencies
 
           # merge pull requests automatically if all the checks are passing
-          auto-merge: any
+          auto-merge: any 
+
+          # only update specific files
+          # include: mod.ts deps.ts
+          
+          # exclude specific files
+          # exclude: deno.json LICENSE
