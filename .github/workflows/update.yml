@@ -21,25 +21,16 @@ jobs:
         with:
           deno-version: v1.x
 
-      - name: Create new branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git switch -c ${{ env.NEW_BRANCH_NAME }}
-
       - name: Recreate image list
         run: deno task update
 
-      - name: Commit the changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          branch: ${{ env.NEW_BRANCH_NAME }}
-          commit_message: '🍱 og-imagesを更新'
-
       - name: Create pull request
-        uses: repo-sync/pull-request@v2
+        uses: peter-evans/create-pull-request@v6
         with:
-          source_branch: ${{ env.NEW_BRANCH_NAME }}
-          destination_branch: 'main'
-          pr_title: '🍱 og-imagesを更新'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 🍱 og-imageを更新
+          branch: ${{ env.NEW_BRANCH_NAME }}
+          delete-branch: true
+          title: "🍱 og-imageを更新"
+          body: "このPRは自動生成されました 🤖"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
